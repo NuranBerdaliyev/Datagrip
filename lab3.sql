@@ -66,10 +66,11 @@ CREATE TABLE Booking (
     created_at TIMESTAMP NOT NULL,
     updated_at TIMESTAMP,
     status VARCHAR(50) NOT NULL,
-    price DECIMAL(7,2),
+    price NUMERIC(7,2),
     FOREIGN KEY (passenger_id) REFERENCES Passengers(passenger_id)  ON UPDATE CASCADE ON DELETE
     CASCADE
 );
+ALTER TABLE Booking ADD COLUMN price numeric(7,2);
 CREATE TABLE Flights (
     flight_id serial PRIMARY KEY,
     sch_departure_time TIMESTAMP,
@@ -219,6 +220,7 @@ insert into Airport (airport_name, country, state, city, created_at) values ('Cr
 insert into Airport (airport_name, country, state, city, created_at) values ('Chesterfield Inlet Airport', 'Czech Republic', null, 'Malé Svatoňovice', '2022-12-12');
 insert into Airport (airport_name, country, state, city, created_at) values ('Rafaï Airport', 'Iceland', null, 'Stykkishólmur', '2023-03-31');
 
+TRUNCATE TABLE Passengers;
 
 insert into Passengers (first_name, last_name, date_of_birth, gender, country_of_citizenship, country_of_residence, passport_number, created_at, updated_at) values ('Lucien', 'Pepon', '2004-01-16', 'Non-binary', 'Bosnia and Herzegovina', 'Portugal', 473917714, '2023-12-23', '2024-05-23');
 insert into Passengers (first_name, last_name, date_of_birth, gender, country_of_citizenship, country_of_residence, passport_number, created_at, updated_at) values ('Derrick', 'Clohissy', '2003-12-06', 'Male', 'Niger', 'Brazil', 318383379, '2024-08-04', '2024-06-21');
@@ -624,7 +626,210 @@ insert into Flights (sch_departure_time, sch_arrival_time, departing_airport_id,
 insert into Flights (sch_departure_time, sch_arrival_time, departing_airport_id, arriving_airport_id, airline_id, created_at) values ('2024-03-13', '2024-09-10', 48, 20, 15, '2022-11-17');
 insert into Flights (sch_departure_time, sch_arrival_time, departing_airport_id, arriving_airport_id, airline_id, created_at) values ('2024-02-22', '2023-10-13', 97, 84, 60, '2023-02-03');
 
-TRUNCATE TABLE Airport;
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (12, 27, 'Booking.com', 1, '2024-10-02', '2024-04-25', 'confirmed', 23954.71);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (19, 85, 'Hotels.com', 2, '2023-12-09', '2023-10-20', 'completed', 55981.35);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (26, 78, 'Agoda', 3, '2024-06-23', '2024-04-08', 'confirmed', 16558.53);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 19, 'Hotels.com', 4, '2024-01-21', '2024-04-17', 'completed', 58999.29);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (17, 8, 'Booking.com', 5, '2024-01-31', '2024-05-14', 'cancelled', 18221.41);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (7, 56, 'Airbnb', 6, '2024-07-27', '2024-03-29', 'pending', 31326.94);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (19, 87, 'Expedia', 7, '2024-08-31', '2024-07-14', 'cancelled', 34533.04);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (6, 76, 'Hotels.com', 8, '2024-03-01', '2023-10-20', 'cancelled', 41909.65);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 27, 'Expedia', 9, '2024-06-27', '2024-09-02', 'cancelled', 45261.93);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (21, 1, 'Booking.com', 10, '2024-07-09', '2023-11-17', 'cancelled', 69903.5);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 17, 'Expedia', 11, '2024-03-27', '2024-08-03', 'pending', 14787.67);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (4, 13, 'Hotels.com', 12, '2023-12-06', '2024-06-28', 'completed', 51198.29);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (28, 28, 'Expedia', 13, '2024-05-28', '2023-11-26', 'completed', 11707.17);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (26, 54, 'Expedia', 14, '2024-04-05', '2024-02-12', 'pending', 28252.57);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (26, 72, 'Hotels.com', 15, '2023-11-26', '2024-07-01', 'pending', 66169.38);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (22, 84, 'Hotels.com', 16, '2024-04-03', '2024-09-17', 'completed', 51490.64);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (10, 72, 'Agoda', 17, '2024-09-02', '2023-12-29', 'completed', 12764.7);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 31, 'Booking.com', 18, '2024-06-03', '2023-10-20', 'cancelled', 64562.61);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (6, 91, 'Booking.com', 19, '2024-01-20', '2024-06-15', 'pending', 63341.17);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (9, 84, 'Expedia', 20, '2024-08-29', '2024-08-25', 'pending', 14663.27);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 28, 'Hotels.com', 21, '2024-07-04', '2024-08-11', 'confirmed', 18250.94);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (6, 62, 'Booking.com', 22, '2024-09-21', '2024-08-19', 'pending', 27159.22);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (28, 57, 'Hotels.com', 23, '2024-03-15', '2024-08-25', 'confirmed', 48885.72);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (17, 20, 'Hotels.com', 24, '2024-08-11', '2023-12-02', 'pending', 58478.45);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (17, 94, 'Hotels.com', 25, '2024-01-31', '2024-04-13', 'pending', 33491.92);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (22, 18, 'Agoda', 26, '2024-08-16', '2024-03-12', 'completed', 37946.58);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (2, 24, 'Booking.com', 27, '2024-08-08', '2024-03-02', 'confirmed', 29095.41);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (9, 64, 'Expedia', 28, '2023-11-25', '2024-08-16', 'confirmed', 59795.84);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 39, 'Booking.com', 29, '2024-04-26', '2024-01-29', 'cancelled', 16255.56);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (1, 78, 'Booking.com', 30, '2024-01-30', '2023-10-21', 'confirmed', 44061.42);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (22, 32, 'Agoda', 31, '2023-11-20', '2024-06-25', 'completed', 64313.32);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 70, 'Agoda', 32, '2024-06-12', '2023-11-19', 'confirmed', 30724.37);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (15, 48, 'Airbnb', 33, '2024-07-25', '2023-11-27', 'cancelled', 67111.97);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (21, 69, 'Airbnb', 34, '2024-08-20', '2024-07-05', 'confirmed', 16057.78);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 88, 'Agoda', 35, '2024-09-21', '2024-04-29', 'completed', 40515.07);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (20, 61, 'Expedia', 36, '2024-01-30', '2024-01-07', 'cancelled', 59578.53);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (16, 18, 'Hotels.com', 37, '2024-05-25', '2024-05-02', 'completed', 32149.91);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (10, 19, 'Booking.com', 38, '2024-03-28', '2024-09-19', 'confirmed', 68484.49);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (2, 6, 'Booking.com', 39, '2024-07-05', '2023-11-09', 'pending', 67840.66);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 51, 'Hotels.com', 40, '2024-04-19', '2024-01-05', 'cancelled', 11608.14);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (12, 93, 'Expedia', 41, '2024-09-29', '2024-07-27', 'confirmed', 69466.83);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (30, 27, 'Agoda', 42, '2024-01-27', '2024-01-07', 'confirmed', 24013.95);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (20, 26, 'Hotels.com', 43, '2023-12-04', '2024-01-06', 'pending', 62800.28);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (6, 19, 'Expedia', 44, '2024-01-26', '2023-10-18', 'completed', 64213.3);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (25, 18, 'Booking.com', 45, '2024-08-28', '2023-11-27', 'confirmed', 31553.23);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (8, 42, 'Hotels.com', 46, '2024-09-08', '2023-11-09', 'completed', 37528.54);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (29, 17, 'Agoda', 47, '2024-04-11', '2024-04-18', 'confirmed', 65813.82);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (19, 65, 'Booking.com', 48, '2024-03-04', '2023-10-27', 'cancelled', 65327.95);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (1, 5, 'Agoda', 49, '2024-02-09', '2023-12-20', 'pending', 61892.19);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (5, 45, 'Airbnb', 50, '2024-06-27', '2024-04-03', 'cancelled', 64056.98);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (24, 87, 'Agoda', 51, '2024-10-09', '2024-09-10', 'confirmed', 52057.05);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (15, 64, 'Expedia', 52, '2023-12-12', '2024-01-04', 'completed', 11011.39);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 60, 'Hotels.com', 53, '2024-05-11', '2024-07-09', 'confirmed', 55867.99);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (26, 11, 'Airbnb', 54, '2024-08-13', '2023-11-12', 'completed', 25862.62);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (13, 44, 'Hotels.com', 55, '2024-03-29', '2024-06-22', 'completed', 31351.99);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (16, 48, 'Agoda', 56, '2023-11-21', '2024-09-22', 'confirmed', 19886.29);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (13, 12, 'Hotels.com', 57, '2023-11-01', '2024-09-19', 'cancelled', 16419.98);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (29, 98, 'Expedia', 58, '2024-05-18', '2024-07-26', 'cancelled', 39647.93);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (17, 93, 'Agoda', 59, '2024-04-14', '2024-03-03', 'pending', 14436.51);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 40, 'Hotels.com', 60, '2024-07-25', '2024-01-10', 'completed', 38420.92);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (9, 8, 'Airbnb', 61, '2024-05-06', '2023-12-24', 'cancelled', 35515.16);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (4, 33, 'Airbnb', 62, '2023-10-25', '2024-09-27', 'completed', 53377.71);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (21, 60, 'Expedia', 63, '2023-12-15', '2024-02-28', 'confirmed', 50558.47);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (13, 11, 'Airbnb', 64, '2024-10-05', '2024-02-23', 'confirmed', 31077.23);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (3, 43, 'Booking.com', 65, '2024-10-01', '2024-10-08', 'cancelled', 24850.88);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (12, 5, 'Agoda', 66, '2024-04-24', '2024-02-19', 'cancelled', 51370.45);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (25, 40, 'Expedia', 67, '2024-08-12', '2024-09-26', 'completed', 28272.07);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (18, 95, 'Booking.com', 68, '2023-11-25', '2024-02-05', 'pending', 45772.25);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (14, 100, 'Expedia', 69, '2024-05-23', '2023-12-18', 'pending', 18368.82);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (24, 29, 'Airbnb', 70, '2024-02-01', '2024-09-14', 'pending', 14946.15);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (15, 8, 'Booking.com', 71, '2024-05-03', '2024-09-12', 'completed', 69143.35);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (27, 69, 'Agoda', 72, '2024-02-11', '2024-01-17', 'cancelled', 49205.41);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (9, 7, 'Hotels.com', 73, '2024-10-02', '2023-12-09', 'pending', 18660.91);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (19, 52, 'Expedia', 74, '2024-04-20', '2024-03-17', 'completed', 61988.47);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 49, 'Hotels.com', 75, '2024-01-23', '2024-04-01', 'confirmed', 65359.2);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (24, 88, 'Agoda', 76, '2024-06-27', '2024-07-27', 'confirmed', 62059.58);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (4, 65, 'Hotels.com', 77, '2024-05-27', '2024-06-23', 'completed', 48979.18);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (22, 76, 'Agoda', 78, '2023-11-22', '2024-07-10', 'cancelled', 27278.11);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (5, 3, 'Hotels.com', 79, '2023-12-23', '2024-07-06', 'completed', 48096.39);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (10, 49, 'Agoda', 80, '2024-01-17', '2024-01-28', 'pending', 25727.87);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (10, 72, 'Airbnb', 81, '2024-08-11', '2024-04-07', 'pending', 37906.1);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (21, 40, 'Hotels.com', 82, '2024-02-09', '2024-06-17', 'completed', 34973.1);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (11, 30, 'Booking.com', 83, '2024-09-29', '2024-03-24', 'completed', 20572.24);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (16, 81, 'Agoda', 84, '2024-08-27', '2024-05-26', 'confirmed', 18664.06);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (29, 95, 'Airbnb', 85, '2024-03-11', '2024-07-01', 'completed', 56735.77);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (3, 56, 'Booking.com', 86, '2024-07-18', '2024-04-16', 'pending', 19090.78);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (6, 71, 'Expedia', 87, '2024-05-01', '2024-04-06', 'completed', 47490.89);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (26, 44, 'Hotels.com', 88, '2023-11-03', '2024-07-28', 'pending', 66597.04);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (4, 87, 'Hotels.com', 89, '2024-01-23', '2024-06-02', 'pending', 27932.87);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (10, 96, 'Hotels.com', 90, '2024-08-19', '2023-11-05', 'pending', 61503.4);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (29, 1, 'Airbnb', 91, '2024-07-01', '2024-05-07', 'cancelled', 54685.81);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (19, 38, 'Booking.com', 92, '2024-05-25', '2024-05-31', 'completed', 31500.8);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (21, 89, 'Expedia', 93, '2024-02-25', '2024-05-30', 'pending', 60834.63);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (16, 81, 'Booking.com', 94, '2024-07-01', '2024-06-11', 'cancelled', 56893.17);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (17, 93, 'Booking.com', 95, '2024-06-11', '2023-11-03', 'pending', 45621.16);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (23, 86, 'Agoda', 96, '2023-11-08', '2024-04-02', 'cancelled', 18362.87);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (8, 74, 'Hotels.com', 97, '2023-12-06', '2023-10-16', 'pending', 63199.85);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (8, 45, 'Expedia', 98, '2024-05-25', '2024-04-15', 'cancelled', 69294.44);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (20, 11, 'Hotels.com', 99, '2023-12-14', '2024-02-09', 'completed', 38814.48);
+insert into Booking (flight_id, passenger_id, booking_platform, booking_id, created_at, updated_at, status, price) values (22, 69, 'Booking.com', 100, '2024-01-09', '2024-04-27', 'cancelled', 15785.65);
+
+TRUNCATE TABLE Booking CASCADE;
+
+insert into Baggage (weight_in_kg, created_at, booking_id) values (47, '2024-04-23', 53);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (30, '2024-03-23', 65);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (34, '2024-08-10', 31);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (22, '2024-01-13', 78);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (6, '2024-07-20', 91);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (43, '2024-06-25', 75);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (27, '2024-02-09', 27);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (10, '2024-07-12', 72);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (29, '2024-05-11', 90);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (10, '2023-11-14', 29);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (10, '2024-09-01', 13);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (2, '2024-03-20', 13);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (35, '2024-08-27', 56);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (13, '2024-02-27', 86);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (22, '2023-11-27', 34);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (32, '2024-07-01', 31);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (18, '2024-03-23', 48);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (13, '2024-05-06', 73);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (13, '2024-07-05', 20);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (9, '2024-07-13', 45);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (40, '2024-09-10', 65);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (25, '2024-03-04', 4);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (28, '2024-07-11', 42);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (9, '2024-01-14', 97);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (23, '2024-09-22', 87);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (37, '2023-10-26', 31);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (45, '2024-04-06', 51);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (24, '2024-09-29', 13);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (40, '2024-07-13', 7);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (36, '2024-05-26', 55);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (36, '2024-02-27', 47);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (41, '2024-06-02', 58);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (33, '2023-12-23', 32);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (18, '2024-03-28', 81);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (39, '2023-12-23', 61);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (38, '2024-08-16', 28);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (18, '2024-05-04', 46);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (1, '2024-06-04', 57);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (12, '2024-05-20', 19);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (23, '2024-03-10', 63);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (22, '2024-02-13', 43);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (21, '2023-10-19', 16);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (34, '2024-05-09', 62);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (50, '2024-06-24', 5);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (26, '2024-06-13', 98);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (15, '2024-08-18', 3);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (15, '2024-06-17', 21);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (19, '2024-09-03', 14);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (33, '2023-12-18', 27);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (2, '2023-10-11', 63);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (20, '2023-10-27', 80);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (9, '2024-07-04', 45);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (45, '2024-10-03', 97);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (12, '2023-12-01', 56);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (42, '2023-12-20', 41);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (22, '2024-03-04', 71);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (45, '2023-12-10', 74);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (7, '2024-07-22', 48);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (6, '2024-01-14', 73);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (23, '2024-02-04', 25);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (39, '2024-06-14', 91);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (41, '2024-01-06', 52);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (18, '2024-07-31', 68);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (3, '2023-11-16', 100);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (35, '2024-09-07', 45);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (8, '2023-12-06', 35);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (16, '2024-01-24', 61);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (21, '2024-09-02', 4);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (46, '2024-09-20', 66);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (28, '2023-10-21', 60);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (17, '2024-04-26', 7);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (14, '2024-05-19', 81);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (10, '2024-08-29', 35);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (42, '2024-01-19', 10);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (50, '2024-06-15', 25);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (40, '2024-01-13', 47);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (5, '2024-04-27', 53);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (13, '2023-12-14', 98);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (32, '2024-07-30', 33);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (45, '2024-06-28', 54);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (32, '2023-11-20', 5);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (33, '2023-12-15', 60);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (18, '2024-04-04', 66);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (14, '2024-03-08', 30);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (19, '2024-08-08', 50);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (46, '2024-06-22', 45);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (32, '2023-12-26', 50);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (38, '2024-08-19', 46);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (19, '2024-07-28', 60);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (50, '2024-05-02', 16);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (33, '2024-06-23', 30);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (13, '2023-11-24', 2);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (34, '2023-12-14', 75);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (31, '2023-10-21', 70);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (33, '2024-05-16', 83);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (17, '2023-11-26', 84);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (34, '2024-08-13', 8);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (9, '2024-06-05', 43);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (19, '2024-05-28', 52);
+insert into Baggage (weight_in_kg, created_at, booking_id) values (35, '2024-08-01', 91);
+
 SELECT *
 FROM passengers
 WHERE first_name = last_name;
@@ -638,6 +843,17 @@ SELECT * FROM Flights
 JOIN Airport ON Flights.arriving_airport_id = Airport.airport_id
 WHERE Airport.country = 'China';
 
-SELECT * FROM Passengers
+SELECT first_name || ' ' || last_name AS full_name
+     , AGE(CURRENT_DATE, date_of_birth) FROM Passengers
 ORDER BY date_of_birth DESC
-LIMIT 1;
+limit 1;
+SELECT ticket_price FROM Booking;
+DROP TABLE Baggage;
+
+SELECT baggage_id, weight_in_kg FROM Baggage
+WHERE weight_in_kg>25
+ORDER BY weight_in_kg DESC
+LIMIT 3;
+
+SELECT booking_platform, min(price) AS Shrek FROM Booking
+GROUP BY booking_platform;
