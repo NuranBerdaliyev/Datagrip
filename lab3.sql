@@ -857,3 +857,7 @@ LIMIT 3;
 
 SELECT booking_platform, min(price) AS Shrek FROM Booking
 GROUP BY booking_platform;
+
+SELECT first_name || ' ' || last_name AS full_name, AGE (CURRENT_DATE, Passengers.date_of_birth) FROM Passengers
+ORDER BY date_of_birth DESC
+LIMIT 1;
